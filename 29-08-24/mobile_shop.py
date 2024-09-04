@@ -28,7 +28,7 @@ while True:
         id=int(input('Enter ID of the phone that you want to update : '))
         f=0
         for i in mobiles:
-            if id in i:
+            if id==i[0]:
                 f=1
                 while True:
                     print(
@@ -74,7 +74,7 @@ while True:
         id=int(input('Enter ID of the phone that you want to delete : '))
         f=0
         for i in mobiles:
-            if id in i:
+            if id==i[0]:
                 f=1
                 mobiles.remove(i)
         if f==0:
@@ -83,7 +83,7 @@ while True:
         id=int(input('Enter ID of the phone that you want to search : '))
         f=0
         for i in mobiles:
-            if id in i:
+            if id==i[0]:
                 f=1
                 print('{:<5}{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}'.format('ID','BRAND','NAME','STORAGE','CAMERA','PRICE','QUANTITY'))
                 print('-'*65)
