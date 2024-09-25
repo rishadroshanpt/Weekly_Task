@@ -33,7 +33,7 @@ def add_bike():
     if len(bikes)==0:
         b_id=501
     else:
-        b_id=bikes[-1]['b_id']
+        b_id=bikes[-1]['b_id']+1
         b_name=input('Enter the name of the bike : ')
         f=0
         for i in bikes:
@@ -50,7 +50,61 @@ def view_bikes():
     print('-'*50)
     for i in bikes:
         print('{:<10}{:<10}{:<10}{:<10}{:<10}'.format(i['b_id'],i['b_brand'],i['b_name'],i['b_model'],i['b_rent']))
-
+def update_bike():
+    id=int(input('Enter the id of the bike that you want to update : '))
+    f=0
+    for i in bikes:
+        if id==i['b_id']:
+            f=1
+            while True:
+                print('''
+1.Update bike name
+2.Update bike brand
+3.Update bike model
+4.Update bike rent amount
+5.Exit
+''')
+                ch=int(input('Enter your choice : '))
+                if ch==1:
+                    newName=input('Enter the new name of the bike : ')
+                    i['b_name']=newName
+                elif ch==2:
+                    newBrand=input('Enter your new brand name : ')
+                    i['b_brand']=newBrand
+                elif ch==3:
+                    newModel=int(input('Enter the new model : '))
+                    i['b_model']=newModel
+                elif ch==4:
+                    newRent=int(input('Enter the new rent amount : '))
+                    i['b_rent']=newRent
+                elif ch==5:
+                    break
+                else:
+                    print('Invalid choice !')
+    if f==0:
+        print('Id not found !')
+def view_users():
+    print('{:<10}{:<10}{:<10}{:<10}{:<10}'.format('ID','NAME','USERNAME','EMAIL','PHONE'))
+    print('-'*50)
+    for i in users:
+        print('{:<10}{:<10}{:<10}{:<10}{:<10}'.format(i['id'],i['name'],i['username'],i['email'],i['phone']))
+def delete_bike():
+    id=int(input('Enter the id of the bike that you want to update : '))
+    f=0
+    for i in bikes:
+        if id==i['b_id']:
+            f=1
+            bikes.remove(i)
+            print('Bike removed')
+    if f==0:
+        print('Id not found !')
+def view_user(user):
+    print('ID   :',user['id'])
+    print('NAME   :',user['name'])
+    print('USERNAME   :',user['username'])
+    print('EMAIL   :',user['email'])
+    print('PHONE   :',user['phone'])
+    print('PASSWORD   :',user['password'])
 bikes=[{'b_id':501,'b_brand':'ducati','b_name':'ducati','b_model':2018,'b_rent':1800}]
 users=[{'id':1001,'name':'roshan','username':'rish','email':'rish','phone':124,'password':'123'}]
 while True:
@@ -82,10 +136,32 @@ while True:
                     add_bike()
                 elif ch==2:
                     view_bikes()
+                elif ch==3:
+                    update_bike()
+                elif ch==4:
+                    view_users()
+                elif ch==5:
+                    delete_bike()
                 elif ch==6:
                     break
+                else:
+                    print('Invalid choice !')
         elif f==2:
             print('User login .')
-
+            while True:
+                print('''
+1.View bikes
+2.View user
+3.Update user
+4.Rent a bike
+5.Exit
+''')
+                ch=int(input('Enter your choice'))
+                if ch==1:
+                    view_bikes()
+                elif ch==2:
+                    view_user(user)
+                elif ch==5:
+                    break
     elif ch==3:
         break
