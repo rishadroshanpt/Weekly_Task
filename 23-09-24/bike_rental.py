@@ -99,12 +99,61 @@ def delete_bike():
     if f==0:
         print('Id not found !')
 def view_user(user):
+    print('USER DETAILS')
     print('ID   :',user['id'])
     print('NAME   :',user['name'])
     print('USERNAME   :',user['username'])
     print('EMAIL   :',user['email'])
     print('PHONE   :',user['phone'])
-    print('PASSWORD   :',user['password'])
+def update_user(user):
+    while True:
+        print('''
+1.Change email
+2.Change username
+3.Change phone number
+4.Change password
+5.Exit
+''')
+        ch=int(input('Enter your choice : '))
+        if ch==1:
+            new_email=input('Enter your new email : ')
+            user['email']=new_email
+        elif ch==2:
+            new_username=input('Enter your new username : ')
+            user['username']=new_username
+        elif ch==3:
+            new_phone=int(input('Enter new phone number : '))
+            user['phone']=new_phone
+        elif ch==4:
+            pw=input('Enter your current password : ')
+            if pw==user['password']:
+                newPasswd=input('Enter new password : ')
+                user['password']=newPasswd
+        elif ch==5:
+            break
+        else:
+            print('Invalid choice !')
+def rent_a_bike(user):
+    view_bikes()
+    id=int(input('Enter ID of the bike that you want to rent : '))
+    f=0
+    for i in bikes:
+        if id==i['b_id']:
+            f=1
+            print('Rent amount per day for ',i['b_name'],' is ',i['b_rent'])
+            days=int(input('For how many days do you need the bike : '))
+            total=days*i['b_rent']
+            print('Total amount payable : ',total)
+            ch=int(input('''
+1.Do you want to proceed ?
+2.Cancel 
+Enter your choice
+'''))
+            if ch==1:
+                user['bike'].append(i['b_name'])
+                print('Bike rented succesfully !')
+            else:
+                print('Booking cancelled !')
 bikes=[{'b_id':501,'b_brand':'ducati','b_name':'ducati','b_model':2018,'b_rent':1800}]
 users=[{'id':1001,'name':'roshan','username':'rish','email':'rish','phone':124,'password':'123'}]
 while True:
@@ -161,7 +210,15 @@ while True:
                     view_bikes()
                 elif ch==2:
                     view_user(user)
+                elif ch==3:
+                    update_user(user)
+                elif ch==4:
+                    rent_a_bike(user)
                 elif ch==5:
                     break
+                else:
+                    print('Invalid choice !')
     elif ch==3:
         break
+    else:
+        print('Invalid choice !')
