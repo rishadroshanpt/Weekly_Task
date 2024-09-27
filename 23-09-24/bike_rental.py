@@ -17,6 +17,7 @@ def register_user():
         password=input('Set password : ')
         bike=[]
         users.append({'id':id,'name':name,'username':username,'email':email,'phone':phone,'password':password,'bike':bike})
+        print('Successfully registered.')
 def login():
     username=input('Enter your username : ')
     passwd=input('Enter your password : ')
@@ -44,12 +45,14 @@ def add_bike():
             b_brand=input('Enter the brand name of the bike : ')
             b_model=int(input('Enter the bike model : '))
             b_rent=int(input('Enter the rental rate for 1 day : '))
-            bikes.append({'b_id':b_id,'b_brand':b_brand,'b_name':b_name,'b_model':b_model,'b_rent':b_rent})
+            b_stock='In'
+            bikes.append({'b_id':b_id,'b_brand':b_brand,'b_name':b_name,'b_model':b_model,'b_rent':b_rent,'b_stock':b_stock})
+            print('Bike added successfully.')
 def view_bikes():
-    print('{:<10}{:<10}{:<10}{:<10}{:<10}'.format('ID','BRAND','NAME','MODEL','RENT'))
-    print('-'*50)
+    print('{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}'.format('ID','BRAND','NAME','MODEL','RENT','STOCK'))
+    print('-'*60)
     for i in bikes:
-        print('{:<10}{:<10}{:<10}{:<10}{:<10}'.format(i['b_id'],i['b_brand'],i['b_name'],i['b_model'],i['b_rent']))
+        print('{:<10}{:<10}{:<10}{:<10}{:<10}{:<10}'.format(i['b_id'],i['b_brand'],i['b_name'],i['b_model'],i['b_rent'],i['b_stock']))
 def update_bike():
     id=int(input('Enter the id of the bike that you want to update : '))
     f=0
@@ -78,6 +81,7 @@ def update_bike():
                     newRent=int(input('Enter the new rent amount : '))
                     i['b_rent']=newRent
                 elif ch==5:
+                    print('Updations successfully added.')
                     break
                 else:
                     print('Invalid choice !')
@@ -105,6 +109,7 @@ def view_user(user):
     print('USERNAME   :',user['username'])
     print('EMAIL   :',user['email'])
     print('PHONE   :',user['phone'])
+    print('BIKE :',user['bike'])
 def update_user(user):
     while True:
         print('''
@@ -130,6 +135,7 @@ def update_user(user):
                 newPasswd=input('Enter new password : ')
                 user['password']=newPasswd
         elif ch==5:
+            print('User updation done.')
             break
         else:
             print('Invalid choice !')
@@ -152,9 +158,10 @@ Enter your choice
             if ch==1:
                 user['bike'].append(i['b_name'])
                 print('Bike rented succesfully !')
+                bikes['stock']='Out'
             else:
                 print('Booking cancelled !')
-bikes=[{'b_id':501,'b_brand':'ducati','b_name':'ducati','b_model':2018,'b_rent':1800}]
+bikes=[{'b_id':501,'b_brand':'ducati','b_name':'ducati','b_model':2018,'b_rent':1800,'b_stock':'In'}]
 users=[{'id':1001,'name':'roshan','username':'rish','email':'rish','phone':124,'password':'123'}]
 while True:
     print('''
