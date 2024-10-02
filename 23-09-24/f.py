@@ -146,40 +146,26 @@ def rent_a_bike(user):
     for i in bikes:
         if id==i['b_id']:
             f=1
-            if i['b_stock']=='Out':
-                print('Out of stock !')
+            print('Rent amount per day for ',i['b_name'],' is ',i['b_rent'])
+            days=int(input('For how many days do you need the bike : '))
+            total=days*i['b_rent']
+            print('Total amount payable : ',total)
+            ch=int(input('''
+1.Do you want to proceed ?
+2.Cancel 
+Enter your choice
+'''))
+            if ch==1:
+                user['bike'].append(i['b_name'])
+                print('Bike rented succesfully !')
+                i['b_stock']='Out'
             else:
-                print('Rent amount per day for ',i['b_name'],' is ',i['b_rent'])
-                days=int(input('For how many days do you need the bike : '))
-                total=days*i['b_rent']
-                print('Total amount payable : ',total)
-                ch=int(input('''
-    1.Do you want to proceed ?
-    2.Cancel 
-    Enter your choice
-    '''))
-                if ch==1:
-                    user['bike'].append(i['b_id'])
-                    print('Bike rented succesfully !')
-                    i['b_stock']='Out'
-                else:
-                    print('Booking cancelled !')
-    if f==0:
-        print('ID not found !')
+                print('Booking cancelled !')
 def return_bike(user):
     print(user['bike'])
     id=int(input('Enter ID of the bike that you want to return : '))
-    f=0
     for i in user['bike']:
-        if id==i:
-            f=1
-            user['bike'].remove(i)
-            for j in bikes:
-                if id==j['b_id']:
-                    j['b_stock']='In'
-                    print('Bike returned successfully')
-    if f==0:
-        print('ID not found !')
+        if id==
 bikes=[{'b_id':501,'b_brand':'ducati','b_name':'ducati','b_model':2018,'b_rent':1800,'b_stock':'In'}]
 users=[{'id':1001,'name':'roshan','username':'rish','email':'rish','phone':124,'password':'123','bike':[]}]
 while True:
@@ -229,7 +215,7 @@ while True:
 2.View user
 3.Update user
 4.Rent a bike
-5.Return bike
+5.Return bike 
 6.Exit
 ''')
                 ch=int(input('Enter your choice'))
