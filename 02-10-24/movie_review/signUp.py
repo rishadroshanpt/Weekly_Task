@@ -16,5 +16,6 @@ def signup():
         name=input('Enter your name : ')
         phone=int(input('Enter your mobile number : '))
         password=input('Set password : ')
-        users.append({'id':id,'name':name,'username':username,'email':email,'phone':phone,'password':password})
+        movie=[]
+        users.append({'id':id,'name':name,'username':username,'email':email,'phone':phone,'password':password,'movie':movie})
         print('Successfully Sign Up.')
