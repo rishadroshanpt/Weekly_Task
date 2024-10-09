@@ -64,6 +64,8 @@ while True:
                     rate_movie(user)
                 elif ch==3:
                     view_user(user)
+                elif ch==4:
+                    update_user(user)
                 elif ch==5:
                     break
                 else:

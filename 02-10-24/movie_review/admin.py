@@ -18,7 +18,8 @@ def add_movie():
             mYear=int(input('Release year : '))
             mDir=input('Director name : ')
             mRating=float()
-            movies.append({'m_id':m_id,'m_name':mName,'m_year':mYear,'m_dir':mDir,'m_rating':mRating})
+            l=[]
+            movies.append({'m_id':m_id,'m_name':mName,'m_year':mYear,'m_dir':mDir,'m_rating':mRating,'l':l})
 def view_movies():
     print(('{:<10}{:<20}{:<10}{:<20}{:<10}').format('ID','NAME','YEAR','DIRECTOR','RATING'))
     print('-'*70)
