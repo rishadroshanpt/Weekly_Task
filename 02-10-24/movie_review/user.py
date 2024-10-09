@@ -6,22 +6,32 @@ def rate_movie(user):
     for i in movies:
         if id==i['m_id']:
             f=1
-            rating=float(input('Enter your rating out of 5 : '))
-            if rating<=5:
-                i['l'].append(rating)
-                rt=0
-                for j in i['l']:
-                    rt+=j
-                rtn=(rt/len(i['l']))
-                print(i['l'],rtn,len(i['l']))
-                i['m_rating']=rtn
-                user['movie'].append(i['m_id'])
-            else:
-                print('Rating is larger than 5 !')
+            # movies=[{'m_id':'m501','m_name':'solo','m_year':2017,'m_dir':'Bijoy Nambiar','m_rating':3.4,'l':[3.4]}]
+            for j in i['l']:
+                if user['id']==j['id']:
+                    f=2
+                    ch=input('You have already rated this movie, Do you want to rate again y/n : ' )
+                    if ch=='y' or ch=='Y':
+                        rating=float(input('Enter your rating out of 5 : '))
+                        if rating<=5:
+                            j['rating']=rating
+                        else:
+                            print('Rating is larger than 5 !')
+            if f==1:    
+                rating=float(input('Enter your rating out of 5 : '))
+                if rating<=5:
+                    i['l'].append({'rating':rating,'id':user['id']})
+                    user['movie'].append(i['m_id'])
+                else:
+                    print('Rating is larger than 5 !')
+            rt=0
+            for k in i['l']:
+               rt+=k['rating']
+            rtn=(rt/len(i['l']))
+            i['m_rating']=rtn
     if f==0:
         print('Id not found !')
 def view_user(user):
-    # users=[{'id':1001,'username':'rish','email':'rish','name':'roshan','phone':12345678,'password':'123','movie':[]}]
     print('-'*20,'USER DETAILS','-'*20)
     print('ID     :   ',user['id'])
     print('NAME     :   ',user['name'])
@@ -68,3 +78,5 @@ def update_user(user):
                 print('Invalid password')
         elif ch==6:
             break
+        else:
+            print('Invalid choice !')
